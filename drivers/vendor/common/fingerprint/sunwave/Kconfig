@@ -1,0 +1,15 @@
+#
+# sunwave Fingerprint driver configuration
+#
+
+config PLATFORM_FINGERPRINT_SUNWAVE
+       tristate "generic sunwave fingerprint driver"
+       default n
+       help
+       add support for sunwave fingerprint driver.
+
+config PLATFORM_FINGERPRINT_SUNWAVE_PWR_MODE_REGULATOR
+       bool "Sunwave Fingerprint power regulator"
+       default n
+       help
+       SUNWAVECORP Fingerprint power regulator, default GPIO

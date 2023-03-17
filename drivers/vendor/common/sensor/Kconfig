@@ -1,0 +1,15 @@
+
+menuconfig VENDOR_SOC_SENSOR
+	bool "vendor sensor"
+	default n
+	help
+	  Say Y here, and a list of supported sensor will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say n.
+
+if VENDOR_SOC_SENSOR
+
+source "drivers/vendor/common/sensor/temperature/Kconfig"
+
+endif

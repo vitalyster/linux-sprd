@@ -1,0 +1,1 @@
+obj-y += zte_bootreason.o

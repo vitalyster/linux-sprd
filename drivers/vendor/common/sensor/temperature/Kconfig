@@ -1,0 +1,19 @@
+#
+# sensor driver configuration
+#
+
+config TEMPERATURE_SENSOR
+	bool "TEMPERATURE SENSOR"
+		depends on I2C
+		default n
+		help
+		  Say Y here if you have tlsc6x touch panel.
+		  If unsure, say N.
+
+config SENSOR_MLX90632
+	bool "SENSOR MLX90632"
+		depends on I2C
+		default n
+		help
+		  Say Y here if you have tlsc6x touch panel.
+		  If unsure, say N.
