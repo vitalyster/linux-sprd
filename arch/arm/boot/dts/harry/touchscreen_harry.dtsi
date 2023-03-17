@@ -1,0 +1,28 @@
+&i2c3 {
+	status = "okay";
+	clock-frequency = <400000>;
+	synaptics_dsx@22 {
+		compatible = "synaptics,dsx-i2c";
+		reg = <0x22>;
+		synaptics,irq-gpio = <&ap_gpio 144 0x2008>;
+		synaptics,reset-gpio = <&ap_gpio 145 0>;
+		synaptics,power-gpio = <&ap_gpio 85 0>;
+		synaptics,power-on-state = <1>;
+		synaptics,irq-on-state = <0>;
+		synaptics,reset-on-state = <0>;
+		synaptics,power-delay-ms = <100>;
+		synaptics,reset-delay-ms = <100>;
+		synaptics,reset-active-ms = <20>;
+	};
+
+	tlsc6x_ts@2e {
+		compatible = "tlsc6x,tlsc6x_ts";
+		reg = <0x2e>;
+		gpios = <&ap_gpio 145 0
+			&ap_gpio 144 0
+			&ap_gpio 85 0>;
+		TP_MAX_X = <719>;
+		TP_MAX_Y = <1439>;
+	};
+};
+

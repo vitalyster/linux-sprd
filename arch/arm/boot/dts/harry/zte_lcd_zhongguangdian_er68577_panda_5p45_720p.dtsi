@@ -1,0 +1,92 @@
+/ { lcds {
+	lcd_zhongguangdian_er68577_panda_mipi_hd: lcd_zhongguangdian_er68577_panda_mipi_hd {
+		zte,lcd-init-code-version = "20210302_V0";
+		zte,lcd-backlight-register-bit-length = <0x08>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_350_lux";
+		zte,lcd-disable-ssc;
+		zte,lcd-depay-open-bl-value = <60>;
+		zte,lcd_bl_vsp_vsn_voltage = <0xf>;
+		zte,panel-name = "lcd_zhongguangdian_er68577_panda_mipi_hd";
+		zte,lcd-close-dynamic-dimming;
+		zte,lcd-support-er68577;
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <3>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <860000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <61884>;
+		sprd,height-mm = <123768>;
+
+		sprd,esd-check-enable = <0>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,dsi-non-continuous-clock;
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+		sprd,reset-on-sequence = <1 10>, <0 12>, <1 120>;
+		sprd,reset-off-sequence = <0 0>, <0 0>, <0 20>;
+		sprd,initial-command = [
+39 00 00 03 E0 AB BA
+39 00 00 03 E1 BA AB
+39 00 00 05 B1 10 01 47 FF
+39 00 00 07 B2 1E 14 04 3C 3C 14
+39 00 00 04 B3 56 52 A0
+39 00 00 04 B4 77 30 04
+39 00 00 08 B8 05 12 29 49 48 00 00
+39 00 00 27 B9 7C 42 32 27 23 16 1D 0A 26 28 2B 4E 41 4D 42 42 35 23 01 7C 42 32
+				27 23 16 1D 0A 26 28 2B 4E 41 4D 42 42 35 23 01
+39 00 00 11 C0 76 89 89 34 66 66 66 44 40 04 40 04 3F 00 00 C1
+39 00 00 0B C1 74 94 02 89 80 04 80 04 54 00
+39 00 00 0D C2 37 09 08 89 06 11 22 33 C4 02 18 61
+39 00 00 17 C3 82 49 02 02 01 00 07 05 0D 02 02 13 11 02 02 0F 1F 02 02 02 02 02
+39 00 00 17 C4 02 08 02 02 01 00 06 04 0C 02 02 12 10 02 02 0E 1F 02 02 02 02 02
+39 00 00 07 C8 21 00 31 50 55 16
+39 00 00 03 CA B2 43
+39 00 00 09 CD 0E 4B 4B 11 1E 6B 06 B3
+39 00 00 05 D2 E2 2B 38 00
+39 00 00 0C D4 00 01 00 0E 04 44 08 10 00 00 00
+39 00 00 06 F0 52 F9 21 00 FF
+39 00 00 02 F3 00
+39 00 00 02 51 00
+23 00 00 02 53 2c
+23 00 00 02 55 00
+23 00 00 02 5E 04
+23 96 00 02 11 00
+23 32 00 02 29 00
+			];
+		sprd,sleep-in-command = [
+			39 00 00 02 51 00
+			13 50 00 01 28
+			13 30 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 14 00 01 29
+			];
+
+		display-timings {
+			lcd_zhongguangdian_er68577_panda_mipi_hd_timing0: timing0 {
+			clock-frequency = <96000000>;
+			hactive = <720>;
+			vactive = <1440>;
+			hback-porch = <120>;
+			hfront-porch = <120>;
+			vback-porch = <30>;
+			vfront-porch = <20>;
+			hsync-len = <110>;
+			vsync-len = <4>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <102>;
+			sprd,max-level = <255>;
+			brightness-levels = [
+				39 00 00 02 51 00
+				23 00 00 02 53 24
+			];
+		};
+	};
+};};
+

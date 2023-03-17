@@ -1,0 +1,17 @@
+&spi1 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	himax-ts@0 {
+		compatible = "himax,hxcommon";
+		reg = <0>; /* Same as CS ID */
+		spi-max-frequency = <4800000>;
+		himax,panel-coords = <0 1079 0 2399>;
+		himax,display-coords = <0 1079 2399>;
+		himax,irq-gpio = <&ap_gpio 144 0x2002>;
+		himax,rst-gpio = <&ap_gpio 145 0>;
+		report_type = <1>;
+	};
+
+};
+

@@ -1,0 +1,27 @@
+
+#include "zte_lcd_easyquick_st7701_hsd_4p95_480p.dtsi"
+#include "zte_lcd_lce_st7701_ctc_4p95_480p.dtsi"
+#include "zte_lcd_lcetron_otm8019a_ctc_4p95_480p.dtsi"
+#include "zte_lcd_lead_otm8019a_ctc_4p95_480p.dtsi"
+#include "zte_lcd_lcetron_st7701_hsd_4p95_480p.dtsi"
+#include "zte_lcd_dummy_mipi.dtsi"
+
+&dphy {
+	/delete-property/ sprd,ulps-disabled;
+};
+
+/*&i2c4 {
+	ti65132b@3e {
+		compatible = "tps,ti65132b";
+		reg = <0x3e>;
+	};
+};
+*/
+
+&panel {
+	/*sprd,surface-width = <480>;*/
+	/*sprd,surface-height = <960>;*/
+	//avdd-gpio = <&ap_gpio 4 GPIO_ACTIVE_HIGH>;
+	//avee-gpio = <&ap_gpio 5 GPIO_ACTIVE_HIGH>;
+	reset-gpio = <&ap_gpio 50 GPIO_ACTIVE_HIGH>;
+};

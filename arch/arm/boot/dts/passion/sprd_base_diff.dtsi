@@ -1,0 +1,25 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "zte_lcd.dtsi"
+#include "touchscreen_passion.dtsi"
+#include "zte_sar_passion.dtsi"
+#include "zte_charger_passion.dtsi"
+#include "zte_thermal_passion.dtsi"
+#include "zte_fingerprint_passion.dtsi"
+
+&i2c0 {
+	/delete-node/ sensor-main@20;
+};
+
+&i2c1 {
+	/delete-node/ sensor-sub@20;
+	/delete-node/ sensor-main2@6C;
+};
+
+&i2c4 {
+	/delete-node/ flash-ic@63;
+};
+

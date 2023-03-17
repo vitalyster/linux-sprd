@@ -1,0 +1,19 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+#include "zte_lcd.dtsi"
+#include "zte_charger_demiss.dtsi"
+#include "touchscreen_demiss.dtsi"
+#include "zte_fingerprint_demiss.dtsi"
+#include "zte_nfc_demiss.dtsi"
+#include "zte_thermal_demiss.dtsi"
+
+&i2c0 {
+	/delete-node/ sensor-main@20;
+};
+
+&i2c1 {
+	/delete-node/ sensor-sub@20;
+	/delete-node/ sensor-main2@6C;
+};

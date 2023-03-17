@@ -1,0 +1,98 @@
+/ { lcds {
+	lcd_hx8394f_mipi_tongxingda_hd: lcd_hx8394f_mipi_tongxingda_hd {
+		zte,lcd-init-code-version = "20201126_v0";
+		zte,lcd-backlight-register-bit-length = <0x08>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+		zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+
+		zte,panel-name = "lcd_hx8394f_mipi_tongxingda_hdss";
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <3>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <710000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <64800>;
+		sprd,height-mm = <140400>;
+
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+		sprd,reset-on-sequence = <1 10>, <0 12>, <1 35>;
+		sprd,reset-off-sequence = <1 0>, <1 0>, <1 20>;
+		sprd,initial-command = [
+39 00 00 04 B9 FF 83 94
+39 00 00 0b B1 48 18 78 09 32 44 71 31 4D 30
+39 00 00 07 BA 62 03 68 6B B2 C0
+39 00 00 06 B2 00 80 87 0C 07
+39 00 00 16 B4 17 60 17 60 17 60 0c 0C 70 55 00 3F 01 6B 01 6B
+		01 6B 01 0C 7C
+39 00 00 22 D3 00 00 04 04 3C 1C 00 00 32 10 09 00 09 32 16 25
+		06 25 32 00 00 00 00 37 03 0B 0B 37 00 00 00 0C
+		40
+39 00 00 2d D5 19 19 18 18 1B 1B 1A 1A 00 01 02 03 04 05 06 07
+		20 21 18 18 18 18 18 18 18 18 18 18 18 18 24 25
+		18 18 18 18 18 18 18 18 18 18 18 18
+39 00 00 2d D6 18 18 19 19 1B 1B 1A 1A 07 06 05 04 03 02 01 00
+		25 24 18 18 18 18 18 18 18 18 18 18 18 18 21 20
+		18 18 18 18 18 18 18 18 18 18 18 18
+39 00 00 3b E0 00 0E 1E 28 2D 32 37 37 72 83 93 91 95 A2 A1 A0
+		A9 A9 A4 AF BD 5C 5A 5E 60 67 6B 75 7F 00 0E 1D
+		28 2D 32 37 37 72 83 92 90 94 A1 A0 A0 A9 A9 A4
+		AF BD 5C 5A 5E 60 67 6B 75 7F
+39 00 00 02 CC 0b
+39 00 00 03 C0 1F 31
+39 00 00 06 c9 13 00 0a 8f 8f
+39 00 00 02 D4 02
+39 00 00 02 BD 01
+39 00 00 02 B1 00
+39 00 00 02 BD 00
+39 00 00 02 C6 E5
+39 00 00 02 d2 bb
+39 00 00 03 C7 00 C0
+39 00 00 02 35 00
+39 00 00 02 51 00
+39 00 00 02 53 24
+39 00 00 02 55 01
+39 00 00 02 5e 04
+05 78 00 02 11 00
+05 32 00 02 29 00
+			];
+		sprd,sleep-in-command = [
+			13 0A 00 01 28
+			13 78 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 64 00 01 29
+			];
+
+		display-timings {
+			lcd_hx8394f_mipi_tongxingda_hd_timing0: timing0 {
+			clock-frequency = <76800000>;
+			hactive = <720>;
+			vactive = <1560>;
+			hback-porch = <44>;
+			hfront-porch = <44>;
+			hfront-porch-v2 = <44>;
+			vback-porch = <16>;
+			vfront-porch = <12>;
+			hsync-len = <8>;
+			vsync-len = <4>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <102>;
+			sprd,max-level = <255>;
+			brightness-levels = [
+				39 00 00 02 51 00
+				39 00 00 02 53 2C
+			];
+		};
+	};
+};};
+

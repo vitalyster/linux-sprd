@@ -1,0 +1,13 @@
+
+&i2c4 {
+	status = "okay";
+	aw9610x_sar@13 {
+		compatible = "awinic,aw9610x_sar";
+		reg = <0x13>;
+		irq-gpio = <&ap_gpio 53 0>;
+		chip_name = "AW96103";
+		sar_scan_time = < 1000 >;
+		status = "okay";
+	};
+};
+

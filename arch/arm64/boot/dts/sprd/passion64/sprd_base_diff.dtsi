@@ -1,0 +1,10 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+#include "zte_lcd.dtsi"
+#include "zte_charger_passion64.dtsi"
+#include "touchscreen_passion64.dtsi"
+#include "zte_fingerprint_passion64.dtsi"
+#include "zte_nfc_passion64.dtsi"
+#include "zte_thermal_passion64.dtsi"

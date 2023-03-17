@@ -1,0 +1,97 @@
+config DRM_SPRD
+	tristate "DRM Support for Spreadtrum SoCs Platform"
+	depends on DRM && OF
+	select DRM_KMS_HELPER
+	select DRM_GEM_CMA_HELPER
+	select DRM_KMS_CMA_HELPER
+	select DRM_MIPI_DSI
+	select DRM_PANEL
+	select VIDEOMODE_HELPERS
+	select BACKLIGHT_CLASS_DEVICE
+	help
+	  Choose this option if you have a Spreadtrum chipsets.
+	  If M is selected the module will be called sprd-drm.
+
+#
+#SPRD DRM GSP driver
+#
+source "drivers/gpu/drm/sprd/gsp/Kconfig"
+#/*zte add for lcd common function begin */
+config ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE lcd common function"
+        default n
+config ZTE_LCD_BACKLIGHT_LEVEL_CURVE
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE lcd backlight curve"
+config ZTE_LCD_VDDIO_ALWAYS_ON
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE lcd vddio always on"
+config ZTE_LCD_REG_DEBUG
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support lcd register debug in root version"
+config ZTE_LCD_DCSBL_CABC_GRADIENT
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE dcs bl cabc gradient effect"
+config ZTE_LCD_CABC3_EXTREME_POWER_SAVE
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE extreme power save modem cabc"
+config ZTE_LCD_ESD_ERROR_CTRL
+	depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for lcd esd check error ctrl"
+        default n
+config ZTE_LCD_ESD_TWICE
+	depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for lcd esd check twice"
+        default n
+config ZTE_LCD_DELAY_OPEN_BL
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE lcd delay open bl"
+config ZTE_LCDBL_I2C_CTRL_VSP_VSN
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE vsp vsn power ctrl"
+config ZTE_LCDBL_I2C_CTRL_VSP_VSN_ENHANCE
+	depends on ZTE_LCDBL_I2C_CTRL_VSP_VSN
+	bool "Support for ZTE vsp vsn power enhance ctrl"
+config ZTE_LCD_DISABLE_SSC
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE disable SPRD ssc func in panel dtsi"
+config ZTE_LCD_CUSTOM_AP_PWM_BACKLIGHT
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for ZTE custom ap pwm backlight"
+config ZTE_LCD_BACKLIGHT_MIN_LEVEL_LIMIT
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support for limit the min backlight"
+config ZTE_LCD_TP_GESTURE_POWER_OFF_SEQ
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support lcd tp gesture power off sequence"
+        default n
+config ZTE_LCD_SPI_PANEL
+        depends on ZTE_LCD_COMMON_FUNCTION
+        bool "Support sprd spi lcd"
+        default n
+config ZTE_LCD_CALI_MODE_SUPPORT
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "calibration_mode open display"
+	default n
+config ZTE_LCD_CALI_MODE_SUPPORT_V2
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "calibration_mode flash screen"
+	default n
+config ZTE_LCD_SET_ALS_MODE
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "als_mode open flag"
+	default n
+config ZTE_LCD_HBM_CTRL
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "hbm_mode open flag"
+	default n
+config ZTE_LCD_SUPPORT_ER68577
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "add for support er68577"
+	default n
+#/*zte add for lcd common function end */
+
+config DRM_SPRD_HDMI
+	bool "SPRD DRM HDMI DRIVER"
+	help
+	  Choose this option when you need mipi switch hdmi.

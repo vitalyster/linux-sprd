@@ -1,0 +1,26 @@
+
+#include "zte_lcd_lcetron_hx83102d_qunchuang_6p5_hd.dtsi"
+#include "zte_lcd_skyworth_ili9882h_panda_6p5_hd.dtsi"
+#include "zte_lcd_lcetron_ili9882h_panda_6p5_hd.dtsi"
+#include "zte_lcd_skyworth_icnl9911c_boe_6p5_hd.dtsi"
+#include "zte_lcd_tongxingda_ili7806s_boe_6p5_hd.dtsi"
+#include "zte_lcd_dummy_mipi.dtsi"
+
+&dphy {
+	/delete-property/ sprd,ulps-disabled;
+};
+
+&i2c4 {
+	ti65132b@3e {
+		compatible = "tps,ti65132b";
+		reg = <0x3e>;
+	};
+};
+
+&panel {
+	sprd,surface-width = <720>;
+	sprd,surface-height = <1600>;
+	avdd-gpio = <&ap_gpio 4 GPIO_ACTIVE_HIGH>;
+	avee-gpio = <&ap_gpio 5 GPIO_ACTIVE_HIGH>;
+	reset-gpio = <&ap_gpio 50 GPIO_ACTIVE_HIGH>;
+};

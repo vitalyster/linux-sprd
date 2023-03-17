@@ -1,0 +1,20 @@
+/ {
+	goodix_fp {
+		compatible = "goodix,fingerprint";
+		fp-gpio-reset = <&ap_gpio 131 0x00>;
+		fp-gpio-irq = <&ap_gpio 130 0x00>;
+		fp-gpio-pwr = <&ap_gpio 138 0x00>;
+	};
+	sunwave_fp {
+		compatible = "sunwave,fingerprint";
+		sunwave,gpio_reset = <&ap_gpio 131 0x00>;
+		sunwave,gpio_irq = <&ap_gpio 130 0x00>;
+		sunwave,gpio_pwr = <&ap_gpio 138 0x00>;
+	};
+	chipone_fp {
+		compatible = "chipone,fingerprint";
+		fpreset-gpios = <&ap_gpio 131 0x00>;
+		fpint-gpios = <&ap_gpio 130 0x00>;
+		fppwr-gpios = <&ap_gpio 138 0x00>;
+	};
+};

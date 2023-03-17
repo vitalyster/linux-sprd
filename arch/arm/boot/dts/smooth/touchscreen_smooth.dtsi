@@ -1,0 +1,31 @@
+&i2c3 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	/delete-node/ adaptive-touchscreen@38;
+	focaltech@38 {
+		compatible = "focaltech,fts";
+		reg = <0x38>;
+		focaltech,reset-gpio = <&ap_gpio 145 0>;
+		focaltech,irq-gpio = <&ap_gpio 144 0x2002>;
+		/* focaltech,power-gpio = <&ap_gpio 62 0>; */
+		focaltech,display-coords = <0 0 719 1559>;
+		focaltech,max-touch-number = <10>;
+	};
+
+	chipone_tddi@58 {
+		compatible = "chipone-tddi";
+		reg = <0x58>;
+		chipone,rst-gpio = <&ap_gpio 145 0>;
+		chipone,irq-gpio = <&ap_gpio 144 0>;
+		chipone,x-res = <719>;
+		chipone,y-res = <1559>;
+	};
+
+	ilitek@41 {
+		compatible = "tchip,ilitek";
+		reg  = <0x41>;
+		touch,irq-gpio = <&ap_gpio 144 0x2002>;
+		touch,reset-gpio = <&ap_gpio 145 0>;
+	};
+};

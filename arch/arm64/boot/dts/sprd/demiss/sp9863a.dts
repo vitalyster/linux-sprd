@@ -1,0 +1,54 @@
+/*****************************************
+Do not modify dts file, please modify according dtsi file
+******************************************/
+#include "../sp9863a.dts"
+#include "sprd_base_diff.dtsi"
+
+&i2c5 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	aw881xx_smartpa:aw881xx@34 {
+		compatible = "awinic,aw881xx_smartpa";
+		#sound-dai-cells = <1>;
+		reg = <0x34>;
+		reset-gpio = <&ap_gpio 63 0>;
+		monitor-flag = <1>;
+		monitor-timer-val = <30000>;
+		status = "okay";
+	};
+};
+
+/ {
+	vaudio_iis: vaudio_iis {
+		compatible = "sprd,vaudio";
+		#sound-dai-cells = <1>;
+	};
+};
+
+&sound_sprd_ap_alliis {
+	status = "okay";
+	sprd-audio-card,dai-link@6 {
+		plat {
+			sound-dai = <&sprd_pcm_iis>;
+		};
+		cpu {
+			sound-dai = <&i2s0>;
+		};
+		codec {
+			sound-dai = <&aw881xx_smartpa 0>;
+		};
+	};
+	sprd-audio-card,dai-link@7 {
+		plat {
+			sound-dai = <0>;
+		};
+		cpu {
+			// Voice through aw smart pa(a dummy dai)
+			sound-dai = <&vaudio_iis 2>;
+		};
+		codec {
+			sound-dai = <&aw881xx_smartpa 0>;
+		};
+	};
+};

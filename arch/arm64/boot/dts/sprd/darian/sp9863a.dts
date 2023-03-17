@@ -1,0 +1,48 @@
+/*****************************************
+Do not modify dts file, please modify according dtsi file
+******************************************/
+#include "../sp9863a.dts"
+#include "sprd_base_diff.dtsi"
+
+&i2c4 {
+	clock-frequency = <400000>;
+
+	/delete-node/ charger@6a;
+};
+
+&i2c4 {
+	nfc_pn5xx: pn544@29 {
+		compatible = "nxp,pn544";
+		reg = <0x29>;
+		interrupt-parent = <&ap_gpio>;
+		interrupts = <94 0>;
+		nxp,pn544-irq = <&ap_gpio 121 0>;
+		nxp,pn544-clkreq = <&ap_gpio 94 0>;
+		nxp,pn544-ven = <&ap_gpio 95 0>;
+		nxp,pn544-fw-dwnld = <&ap_gpio 96 0>;
+		interrupt-names = "nfc_int";
+		clock-names = "bb_clk","source","enable";
+		clocks =<&aon_clk CLK_AUX1>,<&ext_26m>,<&aonapb_gate CLK_AUX1_EB>;
+	};
+};
+
+&usb {
+	sprd,cable-detection-method = "typec";
+	extcon = <&extcon_gpio>, <&pmic_typec>;
+};
+
+&i2c5 {
+	status = "okay";
+	clock-frequency = <400000>;
+	aw87359@58 {
+		compatible = "awinic,aw87359_pa";
+		reg = <0x58>;
+	};
+};
+
+
+&sc2721_pmic {
+	led-controller@180 {
+		rgb_v_current = <0x01>;  /*led current is 0.84 mA + 1.69*rgb_v_current */
+	};
+};

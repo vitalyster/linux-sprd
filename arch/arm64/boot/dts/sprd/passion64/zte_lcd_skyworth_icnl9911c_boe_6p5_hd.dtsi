@@ -1,0 +1,153 @@
+/ { lcds {
+	lcd_icnl9911c_skyworth_mipi_hd: lcd_icnl9911c_skyworth_mipi_hd {
+		zte,lcd-init-code-version = "20210213";
+		zte,lcd-backlight-register-bit-length = <0x0C>;
+		zte,lcd-cabc-default-value = <0x01>;
+		zte,lcd-cabc-off-command = [23 00 00 02 55 00];
+		zte,lcd-cabc-low-command = [23 00 00 02 55 01];
+		zte,lcd-cabc-medium-command = [23 00 00 02 55 02];
+		zte,lcd-cabc-high-command = [23 00 00 02 55 03];
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+		zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+		zte,lcd-disable-ssc;
+		zte,panel-name = "lcd_icnl9911c_skyworth_boe_6p517_mipi_hd_chipone";
+		zte,lcd-delay-open-bl-value = <30>;
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <3>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <750000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <67932>;
+		sprd,height-mm = <150960>;
+
+		sprd,esd-check-enable = <0>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <0>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+
+		sprd,reset-on-sequence = <1 5>, <0 10>, <1 35>;
+		sprd,reset-off-sequence = <1 5>;
+		sprd,initial-command = [
+			39 00 00 03 F0 5A 59
+			39 00 00 03 F1 A5 A6
+
+			39 00 00 21 B0 89 88 87 86 02 03 04 05 33
+						33 33 33 18 01 01 60 01 01 0F
+						85 04 03 02 01 02 03 04 00 00
+						00 00 00
+			39 00 00 21 B1 53 42 85 81 0A 00 00 9E 00
+						00 04 08 54 00 00 00 44 40 02
+						01 40 02 01 40 02 01 40 02 01
+						00 00 00
+			39 00 00 12 B2 54 C4 82 05 40 02 01 40 02
+						01 05 05 54 0C 0C 0D 0B
+			39 00 00 21 B3 02 0D 08 0D 08 26 26 91 A2
+						33 44 00 26 00 18 01 02 08 20
+						30 0E 09 42 20 00 20 40 08 09
+						22 33 00
+
+			39 00 00 21 B4 43 1D E6 00 04 06 1C 22 10
+						12 0C 0E 43 43 43 43 43 43 43
+						43 43 43 FF FF FC 42 00 00 00
+						00 00 00
+			39 00 00 21 B5 43 1D E6 00 05 07 1C 22 11
+						13 0D 0F 43 43 43 43 43 43 43
+						43 43 43 FF FF FC 42 00 00 00
+						00 00 00
+
+			39 00 00 19 B8 00 00 00 00 00 00 00 00 00
+						00 00 00 00 00 00 00 00 00 00
+						00 00 00 00 00
+
+			39 00 00 02 B9 57
+
+			39 00 00 0e BB 01 05 09 11 0D 19 1D 55 25
+						69 00 21 25
+			39 00 00 0f BC 00 00 00 00 02 20 FF 00 03
+						33 01 73 33 00
+			39 00 00 0b BD E9 02 4F CF 72 A4 08 44 AE
+						15
+			39 00 00 0b BE 73 87 32 5A 0C 77 43 07 0E
+						0E
+			39 00 00 09 BF 07 25 07 25 7F 00 11 04
+			39 00 00 0a C0 10 FF FF FF FF FF 00 FF 00
+
+			39 00 00 14 C1 C0 0E 20 82 04 28 28 04 2A
+						40 36 00 07 C0 10 FF BC 01 C0
+			39 00 00 02 C2 00
+			39 00 00 0a C3 01 00 FF 00 FF 00 00 81 01
+			39 00 00 0b C4 84 01 2B 41 00 3C 00 03 03
+						2E
+
+			39 00 00 0c C5 03 1C 96 C8 32 10 64 44 05
+						0A 14
+			39 00 00 0b C6 87 A0 2A 29 29 00 64 37 08
+						04
+			39 00 00 02 D7 DE
+
+			39 00 00 17 C7 CA AC 94 81 5D 40 13 65 2C
+						FE CF 9C F2 C7 A9 7A 63 40 1A
+						7F C0 00
+			39 00 00 17 C8 CA AC 94 81 5D 40 13 65 2C
+						FE CF 9C F2 C7 A9 7A 63 40 1A
+						7F C0 00
+
+			39 00 00 21 C5 03 1C B8 B8 30 10 44 44 06
+						0B 14 00 00 00 00 00 00 00 00
+						00 00 00 00 00 00 00 00 00 00
+						00 00 00
+
+			39 00 00 07 C9 43 00 1F FF 3F 03
+			39 00 00 02 CB 00
+			39 00 00 09 D0 80 0D FF 0F 63 0B 08 0C
+			39 00 00 0e D2 42 0C 30 01 80 26 04 00 00
+						C3 00 00 00
+			39 00 00 02 35 00
+
+			39 00 00 03 F1 5A 59
+			39 00 00 03 F0 A5 A6
+
+			39 00 00 03 51 00 00
+			39 00 00 02 53 2C
+			39 00 00 02 55 01
+			05 3C 00 01 11
+			05 14 00 01 29
+			];
+		sprd,sleep-in-command = [
+			13 0A 00 01 28
+			13 78 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 3C 00 01 11
+			13 14 00 01 29
+			];
+
+		display-timings {
+			lcd_icnl9911c_skyworth_hd_timing0: timing0 {
+			clock-frequency = <76800000>;
+			hactive = <720>;
+			vactive = <1600>;
+			hback-porch = <18>;
+			hfront-porch = <19>;
+			vback-porch = <32>;
+			vfront-porch = <188>;
+			hsync-len = <18>;
+			vsync-len = <2>;
+			};
+		};
+
+		oled-backlight {
+			default-brightness-level = <1632>;
+			sprd,max-level = <4095>;
+			brightness-levels = [
+				39 00 00 03 51 00 00
+				39 00 00 02 53 2C
+			];
+		};
+	};
+};};
+

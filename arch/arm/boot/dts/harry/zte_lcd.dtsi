@@ -1,0 +1,30 @@
+
+#include "zte_lcd_zhongguangdian_er68577_panda_5p45_720p.dtsi"
+#include "zte_lcd_skyworth_st7703_panda_5p45_720p.dtsi"
+#include "zte_lcd_lianchuang_st7703_panda_5p45_720p.dtsi"
+#include "zte_lcd_lcetron_ili9881p_panda_5p45_720p.dtsi"
+/*#include "zte_lcd_lianchuang_jd9366d_panda_5p45_hd.dtsi"
+#include "zte_lcd_skyworth_st7703_hsd_5p45_hd.dtsi"
+#include "zte_lcd_skyworth_ili9881c_huajiacai_5p45_hd.dtsi"*/
+#include "zte_lcd_dummy_mipi.dtsi"
+
+
+&dphy {
+	/delete-property/ sprd,ulps-disabled;
+};
+
+&i2c4 {
+	ti65132b@3e {
+		compatible = "tps,ti65132b";
+		reg = <0x3e>;
+	};
+};
+
+&panel {
+	sprd,surface-width = <720>;
+	sprd,surface-height = <1440>;
+	iovdd-gpio = <&ap_gpio 62 GPIO_ACTIVE_HIGH>;
+	avdd-gpio = <&ap_gpio 4 GPIO_ACTIVE_HIGH>;
+	avee-gpio = <&ap_gpio 5 GPIO_ACTIVE_HIGH>;
+	reset-gpio = <&ap_gpio 50 GPIO_ACTIVE_HIGH>;
+};

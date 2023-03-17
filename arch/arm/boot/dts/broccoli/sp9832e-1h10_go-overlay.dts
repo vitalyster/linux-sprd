@@ -1,0 +1,275 @@
+/*
+ * Spreadtrum sharkle sp9832e board DTS file
+ *
+ * Copyright (C) 2019, Spreadtrum Communications Inc.
+ *
+ * This file is licensed under a dual GPLv2 or X11 license.
+ */
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/gpio/gpio.h>
+
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/clock/sprd,sc9832e-clk.h>
+
+/ {
+	model = "Spreadtrum SP9832E-1H10-GO Board";
+
+	compatible = "sprd,sp9832e-1h10", "sprd,sc9832e";
+
+	sprd,sc-id = "sp9832e 1h10 1000";
+
+	/*
+	* When create a new node, we should use the key word __overlay__,
+	* otherwise u-boot can not analyze it.
+	*/
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			gpio-keys {
+				compatible = "gpio-keys";
+
+				key-volumedown {
+					label = "Volume Down Key";
+					linux,code = <KEY_VOLUMEDOWN>;
+					gpios = <&eic_debounce 2 GPIO_ACTIVE_LOW>;
+					debounce-interval = <2>;
+					wakeup-source;
+				};
+
+				key-volumeup {
+					label = "Volume Up Key";
+					linux,code = <KEY_VOLUMEUP>;
+					gpios = <&pmic_eic 10 GPIO_ACTIVE_HIGH>;
+					debounce-interval = <2>;
+					wakeup-source;
+				};
+
+				key-power {
+					label = "Power Key";
+					linux,code = <KEY_POWER>;
+					gpios = <&pmic_eic 1 GPIO_ACTIVE_LOW>;
+					debounce-interval = <2>;
+					wakeup-source;
+				};
+			};
+
+			tboard_thermistor:thermal-sensor {
+				compatible = "generic-adc-thermal";
+				#thermal-sensor-cells = <0>;
+				io-channels = <&pmic_adc 1>;
+				io-channel-names = "sensor-channel";
+				temperature-lookup-table = < (-39742) 1131
+								(-29777) 1110
+								(-19480) 1074
+								(-4679) 983
+								10110 838
+								24805 654
+								44922 413
+								54903 316
+								64895 238
+								74884 178
+								84883 133
+								94883 100
+								104880 75
+								114889 57
+								124872 43 >;
+			};
+		};
+	};
+};
+
+&chosen {
+	bootargs_ext = "androidboot.hardware=sp9832e_1h10_go androidboot.dtbo_idx=0";
+};
+
+&reserved_memory {
+	tos_reserved: tos-mem@94020000 {
+		reg = <0x94040000 0x01fc0000>;
+	};
+
+	fd_reserved: fd-mem@bfa80000 {
+		reg = <0xbfa80000 0x00500000>;
+	};
+};
+
+&thm_zone {
+	bd_thmzone: board-thmzone {
+	polling-delay-passive = <0>;
+	polling-delay = <0>;
+	thermal-sensors = <&tboard_thermistor>;
+	};
+};
+
+&sdio0 {
+	cd-gpios= <&ap_gpio 78 1>;
+};
+
+
+
+&i2c2 {
+	status = "okay";
+	clock-frequency = <400000>;
+};
+
+&i2c3 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	touchscreen@38 {
+		compatible = "adaptive-touchscreen";
+		reg = <0x38>;
+		gpios = <&ap_gpio 145 GPIO_ACTIVE_HIGH
+			&ap_gpio 144 GPIO_ACTIVE_HIGH>;
+		controller = "focaltech,ft5436";
+		virtualkeys = <580 60 1320 60 45
+				172 360 1320 60 45
+				158 600 1320 60 45>;
+		surface-width = <720>;
+		surface-height = <1280>;
+		private-data {
+			a8 = /bits/ 8 <0x5A>;
+		};
+	};
+};
+
+&i2c4 {
+	status = "okay";
+};
+
+&usb {
+	extcon = <&extcon_gpio>, <&pmic_typec>;
+};
+
+&ddr_dfs {
+	sprd-scene = "boost", "lcdon", "lcdoff", "camlow", "camhigh";
+	sprd-freq = <667 384 256 384 667>;
+};
+
+&vddrf18 {
+	status = "disabled";
+	};
+
+&vddrf125 {
+		status = "disabled";
+	};
+
+&vddsim2 {
+		status = "disabled";
+	};
+
+&vddldomem {
+		status = "disabled";
+	};
+
+&pin_controller {
+	pinctrl-names =
+	/* keyout0 ~ keyout2 */
+	"gpio_121", "gpio_122", "gpio_123",
+	/* keyin0 ~ keyin2 */
+	"gpio_124", "gpio_125", "gpio_126",
+	/* extint0, extint1, scl3, sda3 */
+	"gpio_144", "gpio_145", "gpio_146", "gpio_147",
+	/* Note:If create a new board,need to add the shutdown node */
+	"shutdown";
+	pinctrl-0 = <&gpio_121>;
+	pinctrl-1 = <&gpio_122>;
+	pinctrl-2 = <&gpio_123>;
+	pinctrl-3 = <&gpio_124>;
+	pinctrl-4 = <&gpio_125>;
+	pinctrl-5 = <&gpio_126>;
+	pinctrl-6 = <&gpio_144>;
+	pinctrl-7 = <&gpio_145>;
+	pinctrl-8 = <&gpio_146>;
+	pinctrl-9 = <&gpio_147>;
+	pinctrl-10 = <&shutdown0
+			&shutdown1
+			&shutdown2>;
+
+	gpio_121: keyout0 {
+		pins = "SHARKLE_KEYOUT0";
+		function = "func4";
+	};
+
+	gpio_122: keyout1 {
+		pins = "SHARKLE_KEYOUT1";
+		function = "func4";
+	};
+
+	gpio_123: keyout2 {
+		pins = "SHARKLE_KEYOUT2";
+		function = "func4";
+	};
+
+	gpio_124: keyin0 {
+		pins = "SHARKLE_KEYIN0";
+		function = "func4";
+	};
+
+	gpio_125: keyin1 {
+		pins = "SHARKLE_KEYIN1";
+		function = "func4";
+	};
+
+	gpio_126: keyin2 {
+		pins = "SHARKLE_KEYIN2";
+		function = "func4";
+	};
+
+	gpio_144: extint0 {
+		pins = "SHARKLE_EXTINT0";
+		function = "func4";
+	};
+
+	gpio_145: extint1 {
+		pins = "SHARKLE_EXTINT1";
+		function = "func4";
+	};
+
+	gpio_146: scl3 {
+		pins = "SHARKLE_SCL3";
+		function = "func4";
+	};
+
+	gpio_147: sda3 {
+		pins = "SHARKLE_SDA3";
+		function = "func4";
+	};
+
+	shutdown0: rfsen0 {
+		pins = "SHARKLE_RFSEN0";
+		function = "func4";
+	};
+
+	shutdown1: rfsck0 {
+		pins = "SHARKLE_RFSCK0";
+		function = "func4";
+	};
+
+	shutdown2: rfsda0 {
+		pins = "SHARKLE_RFSDA0";
+		function = "func4";
+	};
+};
+
+&ion {
+	heap@4 {
+		reg = <4>;
+		label = "carveout_fd";
+		type = <2>;
+		memory-region = <&fd_reserved>;
+	};
+};
+
+&soc {
+	prechg_leds {
+		compatible = "gpio-leds";
+		prechg_red {
+			label = "prechg_red";
+			gpios = <&ap_gpio 33 GPIO_ACTIVE_LOW>;
+			default-state = "off";
+		};
+	};
+};

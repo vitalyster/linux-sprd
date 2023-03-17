@@ -1,0 +1,13 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+
+#include "zte_lcd.dtsi"
+#include "touchscreen_broccoli.dtsi"
+#include "zte_charger_broccoli.dtsi"
+#include "zte_sensor_broccoli.dtsi"
+#include "zte_camera_broccoli.dtsi"
+#include "zte_thermal_broccoli.dtsi"
+

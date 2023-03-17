@@ -1,0 +1,23 @@
+&i2c3 {
+	status = "okay";
+	clock-frequency = <400000>;
+	/delete-node/ adaptive-touchscreen@38;
+	himax-ts@48 {
+		compatible = "himax,hxcommon";
+		reg = <0x48>;
+		himax,panel-coords = <0 719 0 1639>;
+		himax,display-coords = <0 719 0 1639>;
+		himax,irq-gpio = <&ap_gpio 144 0x2008>;
+		himax,rst-gpio = <&ap_gpio 145 0>;
+		report_type = <1>;
+	};
+
+	chipone_tddi@58 {
+		compatible = "chipone-tddi";
+		reg = <0x58>;
+		chipone,rst-gpio = <&ap_gpio 145 0>;
+		chipone,irq-gpio = <&ap_gpio 144 0x2008>;
+		chipone,x-res = <719>;
+		chipone,y-res = <1639>;
+	};
+};

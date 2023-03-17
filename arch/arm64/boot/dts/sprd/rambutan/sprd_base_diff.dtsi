@@ -1,0 +1,7 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "zte_charger_rambutan.dtsi"
+#include "zte_camera_rambutan.dtsi"

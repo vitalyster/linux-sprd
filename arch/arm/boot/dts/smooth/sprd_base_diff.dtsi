@@ -1,0 +1,12 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "zte_lcd.dtsi"
+#include "touchscreen_smooth.dtsi"
+#include "zte_charger_smooth.dtsi"
+#include "zte_camera_smooth.dtsi"
+#include "zte_thermal_smooth.dtsi"
+
+

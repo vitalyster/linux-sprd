@@ -1,0 +1,38 @@
+&i2c2{
+	clock-frequency = <400000>;
+	status = "okay";
+
+	mc3xxx@4c{
+		compatible = "mcube,mc3xxx";
+		reg = <0x4c>;
+		gpios = <&ap_gpio 55 0>;
+		poll_interval = <10>;
+		min_interval = <1>;
+		g_range = <0>;
+		axis_maps_x = <0>;
+		axis_maps_y = <1>;
+		axis_maps_z = <2>;
+		negate_x = <1>;
+		negate_y = <1>;
+		negate_z = <0>;
+	};
+	stk8baxx_acc@18{
+		compatible = "stk,stk8baxx";
+		reg = <0x18>;
+		stk8baxx,irq-gpio = <&ap_gpio 55 0>;
+		stk,direction = <1>;
+	};
+
+	kionix_acc@0E{
+		compatible = "Kionix,accel";
+		reg = <0x0E>;
+		poll_interval = <10>;
+		min_interval = <10>;
+		g_range = <0>;
+		accel_res = <0>;
+		accel_irq_use_drdy = <1>;
+		accel_direction = <3>;
+		gpios = <&ap_gpio 55 0>;
+	};
+
+};

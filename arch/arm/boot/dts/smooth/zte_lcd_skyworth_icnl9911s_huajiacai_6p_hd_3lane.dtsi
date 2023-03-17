@@ -1,0 +1,115 @@
+/ { lcds {
+	lcd_icnl9911s_mipi_3lane_skyworth_hd: lcd_icnl9911s_mipi_3lane_skyworth_hd {
+		zte,lcd-init-code-version = "20201126_v0";
+		zte,lcd-backlight-register-bit-length = <0x0C>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+		zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+		zte,lcd-esd-twice;
+		zte,have-tp-gesture-power_off-sequence;
+		non-continue-clk-en = <1>;
+		zte,panel-name = "lcd_icnl9911s_mipi_3lane_skyworth_hd";
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <3>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <710000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <64800>;
+		sprd,height-mm = <140400>;
+
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+		sprd,reset-on-sequence = <1 10>, <0 12>, <1 35>;
+		sprd,reset-off-sequence = <1 0>, <1 0>, <1 20>;
+
+		sprd,initial-command = [
+39 00 00 03 f0 5a 59
+39 00 00 03 f1 a5 a6
+39 00 00 1f b0 82 81 05 04 87 86 84 85 66 66 33 33 20 01 01
+	78 01 01 0f 05 04 03 02 01 02 03 04 00 00 00
+39 00 00 1e b1 11 44 86 00 01 00 01 7c 01 01 04 08 54 00
+		00 00 44 40 02 01 40 02 01 40 02 01 40 02 01
+39 00 00 12 b2 54 c4 82 05 40 02 01 40 02 01 05 05 54 0c 0c
+		0d 0b
+39 00 00 20 b3 02 00 00 00 00 26 26 91 a2 33 44 00 26 00 18
+		01 02 08 20 30 08 09 44 20 40 20 40 08 09 22 33
+39 00 00 1d b4 0a 02 dc 1d 00 02 02 02 02 12 10 02 02 0e 0c
+		04 03 03 03 03 03 03 ff ff fc 00 00 00
+39 00 00 1d b5 0b 02 dc 1d 00 02 02 02 02 13 11 02 02 0f 0d
+		05 03 03 03 03 03 03 ff ff fc 00 00 00
+39 00 00 19 b8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+		00 00 00 00 00 00 00 00 00
+39 00 00 0e bb 01 05 09 11 0d 19 1d 15 25 69 00 21 25
+39 00 00 0f bc 00 00 00 00 02 20 ff 00 03 33 01 73 44 00
+39 00 00 0b bd 53 12 4f cf 72 a7 08 04 ae 15
+39 00 00 0b be 65 65 50 46 0C 66 43 06 0E 0E
+39 00 00 09 bf 07 25 07 25 7f 00 11 04
+39 00 00 0a c0 10 ff ff ff ff ff 00 ff 00
+39 00 00 14 c1 C0 1E 20 7C 04 0C 10 04 2A 18 36 00 07 CF FF
+		FF C0 00 C0
+39 00 00 02 c2 00
+39 00 00 0a c3 06 00 FF 00 FF 00 00 81 01
+39 00 00 0c c5 03 1C C0 B8 50 10 64 44 08 09 26
+39 00 00 0b c6 87 9A 2A 29 29 31 7F 04 08 00
+39 00 00 17 c7 F7 B0 88 6A 3E 1E EF 46 16 F1
+				CA 9F F8 CE B0 89 6E 46 1A 7E
+				C0 00
+39 00 00 17 c8 F7 B0 88 6A 3E 1E EF 46 16 F1
+				CA 9F F8 CE B0 89 6E 46 1A 7E
+				C0 00
+39 00 00 02 cb 00
+39 00 00 06 d0 80 0D FF 0F 63
+39 00 00 02 d2 42
+39 00 00 02 d7 de
+39 00 00 03 e0 30 f9
+39 00 00 03 f1 5a 59
+39 00 00 03 f0 a5 a6
+39 00 00 02 35 00
+39 00 00 03 51 00 00
+39 00 00 02 53 24
+39 00 00 02 55 00
+39 00 00 03 5E 00 04
+05 78 00 01 11
+05 28 00 01 29
+39 00 00 02 26 01
+			];
+		sprd,sleep-in-command = [
+			39 01 00 02 26 08
+			13 0A 00 01 28
+			13 78 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 64 00 01 29
+			];
+
+		display-timings {
+			lcd_icnl9911s_mipi_3lane_skyworth_hd_timing0: timing0 {
+			clock-frequency = <76800000>;
+			hactive = <720>;
+			vactive = <1560>;
+			hback-porch = <12>;
+			hfront-porch = <16>;
+			hfront-porch-v2 = <16>;
+			vback-porch = <30>;
+			vfront-porch = <124>;
+			hsync-len = <4>;
+			vsync-len = <4>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <1632>;
+			sprd,max-level = <4095>;
+			brightness-levels = [
+				39 00 00 03 51 00 00
+				39 00 00 02 53 2C
+			];
+		};
+	};
+};};
+

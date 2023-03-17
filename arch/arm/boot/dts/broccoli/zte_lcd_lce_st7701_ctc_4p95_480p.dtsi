@@ -1,0 +1,120 @@
+/ { lcds {
+	lcd_lce_st7701_ctc_mipi_hd: lcd_lce_st7701_ctc_mipi_hd {
+		zte,lcd-init-code-version = "20201117_v2";
+		zte,lcd-backlight-register-bit-length = <0x08>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_350_lux";
+		zte,lcd-disable-ssc;
+		zte,lcd-delay-open-bl-value = <60>;
+		zte,lcd-close-dynamic-dimming;
+		zte,panel-name = "lcd_lce_st7701_ctc_mipi_hd";
+
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <2>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <488000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <56160>;
+		sprd,height-mm = <112320>;
+
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+		sprd,reset-on-sequence = <1 5>, <0 5>, <1 120>;
+		sprd,reset-off-sequence = <0 120>;
+
+		sprd,initial-command = [
+39 00 00 06 FF 77 01 00 00 10
+39 00 00 03 C0 77 00
+39 00 00 03 C1 0E 0C
+39 00 00 03 C2 07 03
+23 00 00 02 C6 07
+39 01 00 02 BB 00
+39 01 00 02 BC 01
+39 01 00 02 CA 11
+23 00 00 02 CC 38
+39 00 00 11 B0 00 05 0C 12 1A 0C 07 09 08 1C 05 12 0F 0E 12 14
+39 00 00 11 B1 00 05 0C 10 14 08 08 09 09 1F 0A 17 13 14 1A 1D
+39 00 00 06 FF 77 01 00 00 11
+23 00 00 02 B0 55
+23 00 00 02 B1 59
+23 00 00 02 B2 82
+23 00 00 02 B3 80
+23 00 00 02 B5 4F
+23 00 00 02 B7 89
+23 00 00 02 B8 21
+23 00 00 02 BB 03
+39 00 00 03 B9 00 13
+23 00 00 02 C1 78
+23 00 00 02 C2 78
+23 14 00 02 D0 88
+39 00 00 04 E0 00 A0 02
+39 00 00 0C E1 06 00 00 00 05 00 00 00 00 20 20
+39 00 00 0E E2 00 00 01 00 00 00 03 00 00 00 00 00 00
+39 00 00 05 E3 00 00 33 33
+39 00 00 03 E4 44 44
+39 00 00 11 E5 09 D4 AA 8C 0B D4 AA 8C 05 D4 AA 8C 07 D4 AA 8C
+39 00 00 05 E6 00 00 33 33
+39 00 00 03 E7 44 44
+39 00 00 11 E8 08 D4 AA 8C 0A D4 AA 8C 04 D4 AA 8C 06 D4 AA 8C
+39 00 00 11 EA 10 00 10 00 10 00 10 00 10 00 10 00 10 00 10 00
+39 00 00 08 EB 02 02 4E 4E 44 00 10
+39 00 00 03 EC 08 01
+39 00 00 11 ED 05 47 61 FF 8F 9F FF FF FF FF F9 F8 FF 16 74 50
+39 00 00 07 EF 10 0D 04 08 3F 1F
+39 00 00 06 FF 77 01 00 00 13
+23 00 00 02 EF 08
+39 00 00 03 E8 00 0E
+39 00 00 06 FF 77 01 00 00 00
+23 78 00 02 11 00
+23 00 00 02 35 00
+39 00 00 06 FF 77 01 00 00 13
+39 00 00 03 E8 00 0C
+39 0A 00 03 E6 16 7C
+39 0A 00 03 E8 00 00
+39 00 00 06 FF 77 01 00 00 00
+39 01 00 02 51 00
+39 01 00 02 53 04
+23 14 00 02 29 00
+];
+		sprd,sleep-in-command = [
+			39 05 00 02 53 00
+			39 20 00 02 51 00
+			13 0A 00 01 28
+			13 78 00 01 10
+			39 00 00 07 FF 77 01 00 00 11 80
+			39 00 00 06 FF 77 01 00 00 91
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 64 00 01 29
+			];
+
+		display-timings {
+			lcd_lce_st7701_ctc_mipi_hd_timing0: timing0 {
+			clock-frequency = <32000000>;
+			hactive = <480>;
+			vactive = <960>;
+			hback-porch = <36>;
+			hfront-porch = <34>;
+			vback-porch = <28>;
+			vfront-porch = <28>;
+			hsync-len = <8>;
+			vsync-len = <8>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <102>;
+			sprd,max-level = <255>;
+			brightness-levels = [
+				23 00 00 02 51 00
+				23 00 00 02 53 0C
+			];
+		};
+	};
+};};
+

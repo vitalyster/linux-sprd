@@ -1,0 +1,14 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "zte_lcd.dtsi"
+#include "touchscreen_wukong.dtsi"
+#include "zte_camera_wukong.dtsi"
+#include "zte_sar_wukong.dtsi"
+#include "zte_fingerprint_wukong.dtsi"
+#include "zte_audio_wukong.dtsi"
+#include "zte_charger_wukong.dtsi"
+#include "zte_nfc_wukong.dtsi"
+#include "zte_thermal_wukong.dtsi"

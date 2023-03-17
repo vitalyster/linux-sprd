@@ -1,0 +1,32 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "zte_lcd.dtsi"
+#include "touchscreen_darian.dtsi"
+#include "zte_charger_darian.dtsi"
+#include "zte_sar_darian.dtsi"
+#include "zte_thermal_darian.dtsi"
+#include "zte_fingerprint_darian.dtsi"
+
+&i2c4 {
+	/delete-node/ fan54015_chg;
+};
+&i2c1 {
+	/delete-node/ sensor-main2@6C;
+};
+
+&i2c0 {
+	/delete-node/ sensor-main@20;
+};
+
+&i2c1 {
+	/delete-node/ sensor-sub@20;
+	/delete-node/ sensor-main2@6C;
+};
+
+&i2c7 {
+	/delete-node/ sc2703-flash@4a;
+};
+

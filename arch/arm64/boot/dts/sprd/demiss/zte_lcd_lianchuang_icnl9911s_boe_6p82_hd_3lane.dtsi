@@ -1,0 +1,123 @@
+/ { lcds {
+	lcd_icnl9911s_3lane_lianchuang_6p82_boe_mipi_hd: lcd_icnl9911s_3lane_lianchuang_6p82_boe_mipi_hd {
+		zte,lcd-init-code-version = "20200528_v0";
+		zte,lcd-backlight-register-bit-length = <0x0C>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+		zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+		zte,lcd-disable-ssc;
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <3>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <796000>;  /* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <69660>;
+		sprd,height-mm = <158670>;
+		zte,panel-name = "lcd_icnl9911s_mipi_lianchuang_6p82_boe_chipone_hd";
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+
+		sprd,reset-on-sequence = <1 5>, <0 5>, <1 35>;
+		sprd,reset-off-sequence = <1 5>,<1 1>, <1 1>;
+		sprd,initial-command = [
+39 00 00 03 F0 5A 59
+39 00 00 03 F1 A5 A6
+39 00 00 1f B0 89 88 87 86 02 03 04 05 33 33
+	33 33 00 01 01 78 01 01 0F 85
+	04 03 02 01 02 03 04 00 00 00
+39 00 00 1E B1 53 42 85 81 00 00 00 8A 00 00
+	04 08 54 00 00 00 44 40 02 01
+	40 02 01 40 02 01 40 02 01
+39 00 00 12 B2 54 C4 82 05 40 02 01 40 02 01
+	05 05 54 0C 0C 0D 0B
+39 00 00 20 B3 02 0B 08 0B 08 26 26 91 A2 33
+	44 00 26 00 18 01 02 08 20 30
+	0D 02 33 00 78 00 78 08 09 22
+	33
+39 00 00 1D B4 03 1C 1C DD DD E3 E3 26 10 10
+	12 12 0C 0C 0E 0E 00 00 22 22
+	04 06 FF FF FC 00 00 00
+39 00 00 1D B5 03 1C 1C DD DD E3 E3 26 11 11
+	13 13 0D 0D 0F 0F 00 00 22 22
+	05 07 FF FF FC 00 00 00
+39 00 00 19 B8 00 00 00 00 00 00 00 00 00 00
+	00 00 00 00 00 00 00 00 00 00
+	00 00 00 00
+39 00 00 0e BB 01 05 09 11 0D 19 1D 15 25 69
+	00 21 25
+39 00 00 0F BC 00 00 00 00 02 20 FF 00 03 22
+	01 73 44 00
+39 00 00 0B BD 53 12 4F CF 72 A7 08 44 AE 15
+39 00 00 0B BE 7D 7D 32 46 0C 66 43 02 0E 0E
+39 00 00 09 BF 07 25 07 25 7F 00 11 04
+39 00 00 0a C0 10 FF FF FF FF FF 00 FF 00
+39 00 00 14 C1 C0 20 20 7C 04 0C 10 04 2A 68
+	76 00 07 CF FF FF C0 00 C0
+39 00 00 02 C2 00
+39 00 00 0A C3 01 00 FF 00 FF 00 00 81 01
+39 00 00 0B C4 84 03 2B 41 00 3C 00 03 03 3E
+39 00 00 0C C5 03 1C 70 54 40 10 42 44 08 0E
+	14
+39 00 00 0b C6 87 A2 24 22 22 31 7F 37 08 04
+39 00 00 17 C7 F7 DA C3 AE 8A 6C 3C 8C 50 1F
+	EE B6 09 D9 B9 8E 72 4F 1A 7F
+	E4 00
+39 00 00 17 C8 F7 DA C3 AE 8A 6C 3C 8C 50 1F
+	EE B6 09 D9 B9 8E 72 4F 1A 7F
+	E4 00
+39 00 00 02 CB 00
+39 00 00 06 D0 80 0D FF 0F 63
+39 00 00 02 d2 42
+39 00 00 02 d7 de
+39 00 00 03 e0 30 f9
+39 00 00 03 f1 5a 59
+39 00 00 03 F0 A5 A6
+39 00 00 02 35 00
+39 00 00 03 51 00 00
+39 00 00 02 53 24
+39 00 00 02 55 00
+39 00 00 03 5E 00 04
+05 78 00 01 11
+05 28 00 01 29
+39 01 00 02 26 01
+			];
+		sprd,sleep-in-command = [
+			39 01 00 02 26 08
+			13 0A 00 01 28
+			13 78 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 64 00 01 29
+			];
+
+		display-timings {
+			timing0 {
+			clock-frequency = <76800000>;
+			hactive = <720>;
+			vactive = <1640>;
+			hback-porch = <12>;
+			hfront-porch = <16>;
+			hfront-porch-v2 = <16>;
+			vback-porch = <32>;
+			vfront-porch = <124>;
+			hsync-len = <4>;
+			vsync-len = <4>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <1632>;
+			sprd,max-level = <4095>;
+			brightness-levels = [
+				39 00 00 03 51 00 00
+				39 00 00 02 53 2C
+			];
+		};
+	};
+};};
+
